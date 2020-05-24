@@ -7,7 +7,11 @@ import (
 
 func TestEnter(t *testing.T) {
 	log.SetFlags(log.Lshortfile)
-	if err := Listen(10445339); err != nil {
-		t.Error(err)
+	listener, err := GetListener(10467370)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for msg := range listener {
+		t.Log(msg)
 	}
 }
